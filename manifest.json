@@ -1,0 +1,38 @@
+{
+  "name": "Accessible Clickable Objects",
+  "version": "0.1.0",
+  "description": "Make clickable objects more accessible for people with cognitive disabilities",
+  "permissions": [
+    "storage",
+    "tabs",
+    "background",
+    "accessibilityFeatures.modify",
+    "accessibilityFeatures.read"
+  ],
+  "host_permissions": ["https://*.youtube.com/*"],
+  "background": {
+    
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [],
+      "matches": ["https://*.youtube.com/*"]
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "16": "assets/icons8-barrierefreiheit-2-50.png",
+      "24": "assets/icons8-barrierefreiheit-2-50.png",
+      "32": "assets/icons8-barrierefreiheit-2-50.png"
+    },
+    "default_title": "Accessible Clickable Objects",
+    "default_popup": "popup.html"
+  },
+  "manifest_version": 3
+}
