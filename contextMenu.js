@@ -1,4 +1,5 @@
 chrome.runtime.onInstalled.addListener(function () {
+  // adds an option to the menu that opens on the right click in google, can be removed if desired
   // Create context menu item
   chrome.contextMenus.create({
     id: "ClickableObject_CO",

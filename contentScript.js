@@ -1,9 +1,9 @@
 class highlightClickableObject {
   constructor() {
-    console.log("highlightClickableObject RUNING");
     this.render();
   }
   render() {
+    console.log("page is rendering");
     this.delete();
     this.create();
   }
@@ -17,16 +17,13 @@ class highlightClickableObject {
     // Let's create a floating border on top of these elements that will always be visible
     this.getClickableObject().forEach(function (item) {
       item.element.addEventListener("mouseover", (e) => {
-        if (e.target.innerText) {
           e.target.classList.add("accessibleTextSize");
-        }
       });
       item.element.addEventListener("mouseleave", (e) => {
-        if (e.target.innerText) {
-          e.target.classList.remove("accessibleTextSize");
-        }
+          e.target.classList.remove("accessibleTextSize"); 
       });
 
+      //adding highlights and borders to clickable objects
       let newElement = document.createElement("div");
       newElement.style.outline = "2px dashed rgba(255,0,0,.75)";
       newElement.style.position = "absolute";
@@ -42,6 +39,7 @@ class highlightClickableObject {
     });
   }
 
+  //returns an array of all elements (buttons and clickable places) on the page
   getClickableObject() {
     var bodyRect = document.body.getBoundingClientRect();
 
@@ -68,6 +66,7 @@ class highlightClickableObject {
           text: element.textContent.trim().replace(/\s{2,}/g, " "),
         };
       })
+      // checks if clickable elements are inside the page
       .filter(
         (item) =>
           item.include &&
@@ -84,16 +83,18 @@ class highlightClickableObject {
   }
 }
 
+  //function that works when the page is first loaded
 (() => {
-  console.log("Hello World");
-  window.scrollTo(0, 0);
+  //the first place to add red borders
   const clickableObects = new highlightClickableObject();
 
+  //when the page is resised or the page is scrolled, the red areas reappear
   const debouncedResizeHandler = debounce(() => {
     clickableObects.render();
   }, 100);
   window.addEventListener("resize", debouncedResizeHandler);
   window.addEventListener("scroll", debouncedResizeHandler);
+
 
   function debounce(func, delay) {
     let timeoutId;
