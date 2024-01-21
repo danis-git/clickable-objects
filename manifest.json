@@ -7,22 +7,27 @@
     "tabs",
     "background",
     "accessibilityFeatures.modify",
-    "accessibilityFeatures.read"
+    "accessibilityFeatures.read",
+    "scripting",
+    "contextMenus"
   ],
   "host_permissions": ["https://www.google.com/*"],
   "content_scripts": [
     {
       "matches": ["https://www.google.com/*"],
-      "js": ["contentScript.js"]
+      "js": ["contentScript.js"],
+      "css": ["contentCss.css"]
     }
   ],
   "web_accessible_resources": [
     {
-      "resources": [
-      ],
+      "resources": [],
       "matches": ["https://www.google.com/*"]
     }
   ],
+  "background": {
+    "service_worker": "contextMenu.js"
+  },
   "action": {
     "default_icon": {
       "16": "assets/icons8-barrierefreiheit-2-50.png",
